@@ -4,6 +4,11 @@ import { NodeService } from './node.service';
 import { Node } from './node.model';
 import 'rxjs/add/operator/switchMap';
 
+interface Errors {
+    field: string,
+    message: string
+}
+
 @Component({
     moduleId: module.id,
     selector: 'node-edit',
@@ -14,6 +19,8 @@ export class NodeEditComponent {
     node: Node;
     unlimited: boolean;
     _initial_subsperday: number;
+
+    errors: Errors[];
 
     constructor(
         private nodeService: NodeService,
@@ -60,7 +67,20 @@ export class NodeEditComponent {
         this.nodeService.save(this.node)
             .subscribe(
                 node => this.router.navigate(['/nodes/view', node.id]),
-                error => console.log(error)
+                error => this.extractErrors(error)
             );
+    }
+
+    private extractErrors(err: any): void {
+        let errorsParse = JSON.parse(err._body);
+        this.errors = [];
+        for(let index in errorsParse) {
+            if(errorsParse.hasOwnProperty(index)) {
+                this.errors.push({
+                    field: index,
+                    message: errorsParse[index][0]
+                })
+            }
+        }
     }
 }

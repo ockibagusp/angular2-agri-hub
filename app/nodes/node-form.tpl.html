@@ -3,9 +3,9 @@
     <breadcrumb [title]="is_new ? 'New Node' : 'Edit Node'" [links]="links"></breadcrumb>
     <div class="row-fluid">
         <div class="col-md-6">
-            <!--<ul ng-repeat="error in errors">
+            <ul *ngFor="let error of errors">
                 <li style="color: red">{{ error.field}} -> {{ error.message }}</li>
-            </ul>-->
+            </ul>
             <form name="nodeForm" (ngSubmit)="save()" class="form-horizontal">
                 <div class="form-group">
                     <label class="control-label" for="label">Label:</label>

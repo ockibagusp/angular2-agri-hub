@@ -1,5 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Node } from './node.model';
+import { NodeService } from './node.service';
+
+interface Errors {
+    field: string,
+    message: string
+}
 
 @Component({
     moduleId: module.id,
@@ -12,7 +19,12 @@ export class NodeNewComponent {
     node: Node;
     unlimited: boolean;
 
-    constructor() {}
+    errors: Errors[];
+
+    constructor(
+        private nodeService: NodeService,
+        private router: Router
+    ) {}
 
     ngOnInit() {
         this.links = [
@@ -35,6 +47,23 @@ export class NodeNewComponent {
     }
 
     save(): void {
-        console.log(this.node)
+        this.nodeService.save(this.node)
+            .subscribe(
+                node => this.router.navigate(['/nodes']),
+                error => this.extractErrors(error)
+            );
+    }
+
+    private extractErrors(err: any): void {
+        let errorsParse = JSON.parse(err._body);
+        this.errors = [];
+        for(let index in errorsParse) {
+            if(errorsParse.hasOwnProperty(index)) {
+                this.errors.push({
+                    field: index,
+                    message: errorsParse[index][0]
+                })
+            }
+        }
     }
 }
