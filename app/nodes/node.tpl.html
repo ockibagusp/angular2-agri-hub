@@ -1,0 +1,29 @@
+<nav-bar></nav-bar>
+<div class="container">
+    <breadcrumb [title]="'Nodes List'" [links]="links"></breadcrumb>
+    <div class="row-fluid">
+        <div class="span10">
+            <h3>Node List</h3>
+            <ul class="nodes">
+                <li *ngFor="let node of nodes">
+                    <div>
+                        <a [routerLink]="['/nodes/view', node.id]">
+                            {{node.label}}
+                        </a>
+                    </div>
+                </li>
+            </ul>
+            <strong *ngIf="nodes?.length == 0">No Data</strong>
+            <div class="alert alert-info" role="alert">
+                New node: <a [routerLink]="['/nodes/new']" class="btn btn-primary">Link</a>
+            </div>
+            <h3>Subscriptions</h3>
+            <div class="alert alert-info" role="alert">
+                All subscriptions from any nodes and sensors:
+                <a href="#/subscriptions/index" class="btn btn-primary">
+                    Link
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
