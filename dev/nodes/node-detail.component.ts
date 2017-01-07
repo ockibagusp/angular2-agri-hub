@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Http } from '@angular/http';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { NodeService } from './node.service';
 import { Node } from './node.model';
@@ -15,7 +14,6 @@ export class NodeDetailComponent implements OnInit {
     links: any[]; // breadcrumb
 
     constructor(
-        private http: Http,
         private nodeService: NodeService,
         private router: Router, 
         private route: ActivatedRoute

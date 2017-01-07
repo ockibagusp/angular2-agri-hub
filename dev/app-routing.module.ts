@@ -8,13 +8,24 @@ import { NodeDetailComponent } from './nodes/node-detail.component';
 import { NodeNewComponent } from './nodes/node-new.component';
 import { NodeEditComponent } from './nodes/node-edit.component';
 
+import { SensorComponent } from './sensors/sensor.component';
+import { SensorDetailComponent } from './sensors/sensor-detail.component';
+import { SensorEditComponent } from './sensors/sensor-edit.component';
+import { SensorNewComponent } from './sensors/sensor-new.component';
+
 const routes: Routes = [
     { path: '', redirectTo: '/login', pathMatch: 'full' },
     { path: 'login', component: LoginComponent },
+    // node
     { path: 'nodes', component: NodeComponent },
     { path: 'nodes/new', component: NodeNewComponent },
     { path: 'nodes/view/:id', component: NodeDetailComponent },
     { path: 'nodes/edit/:id', component: NodeEditComponent },
+    // sensor
+    { path: 'nodes/:id/sensors', component: SensorComponent },
+    { path: 'nodes/:nodeid/sensors/new', component: SensorNewComponent },
+    { path: 'nodes/:nodeid/sensors/view/:sensorid', component: SensorDetailComponent },
+    { path: 'nodes/:nodeid/sensors/edit/:sensorid', component: SensorEditComponent },
     // otherwise
     { path: '**', component: PageNotFoundComponent }
 ];

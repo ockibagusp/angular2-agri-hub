@@ -1,0 +1,30 @@
+<nav-bar></nav-bar>
+<div *ngIf="parentNode" class="container">
+    <breadcrumb [title]="'Sensors List'" [links]="links"></breadcrumb>
+    <div class="row-fluid">
+        <div class="span10">
+            <h3>{{ parentNode.label }} Sensors</h3>
+            <ul class="sensors">
+                <li *ngFor="let sensor of sensors">
+                    <div>
+                        <a [routerLink]="['/nodes', parentNode.id, 'sensors', 'view', sensor.id]">
+                            {{sensor.label}}
+                        </a>
+                    </div>
+                </li>
+            </ul>
+            <strong *ngIf="sensors?.length == 0">No Data</strong>
+            <div class="alert alert-info" role="alert">
+                New sensor: <a [routerLink]="['/nodes', parentNode.id, 'sensors', 'new']" 
+                class="btn btn-primary">Link</a>
+            </div>
+            <h3>Subscriptions</h3>
+            <div class="alert alert-info" role="alert">
+                All subscriptions from any nodes and sensors:
+                <a href="#/subscriptions/index" class="btn btn-primary">
+                    Link
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
