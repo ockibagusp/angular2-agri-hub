@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { NavbarComponent } from './navbar/navbar.component';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
@@ -16,7 +17,8 @@ import { LoginService } from './login/login.service';
         BrowserModule,
         FormsModule,
         HttpModule,
-        RouterModule
+        RouterModule,
+        NgbModule.forRoot()
     ],
     exports: [
         BrowserModule,
@@ -25,7 +27,8 @@ import { LoginService } from './login/login.service';
         RouterModule,
         NavbarComponent,
         BreadcrumbComponent,
-        LoginComponent
+        LoginComponent,
+        NgbModule
     ],
     declarations: [
         NavbarComponent,

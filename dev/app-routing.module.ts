@@ -13,6 +13,8 @@ import { SensorDetailComponent } from './sensors/sensor-detail.component';
 import { SensorEditComponent } from './sensors/sensor-edit.component';
 import { SensorNewComponent } from './sensors/sensor-new.component';
 
+import { SensorDataComponent } from './sensordatas/sensordata.component';
+
 const routes: Routes = [
     { path: '', redirectTo: '/login', pathMatch: 'full' },
     { path: 'login', component: LoginComponent },
@@ -26,6 +28,8 @@ const routes: Routes = [
     { path: 'nodes/:nodeid/sensors/new', component: SensorNewComponent },
     { path: 'nodes/:nodeid/sensors/view/:sensorid', component: SensorDetailComponent },
     { path: 'nodes/:nodeid/sensors/edit/:sensorid', component: SensorEditComponent },
+    // sensor data
+    { path: 'sensordata', component: SensorDataComponent },
     // otherwise
     { path: '**', component: PageNotFoundComponent }
 ];
