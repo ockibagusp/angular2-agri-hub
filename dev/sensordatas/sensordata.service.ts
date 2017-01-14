@@ -24,6 +24,12 @@ export class SensorDataService {
             .catch(this.handleError);
     }
 
+    getSensorDataByNode(page:number=1,nodeid:string): Observable<any> {
+        return this.http.get(`${this.nodeUrl}/node/${nodeid}/?page=${page}`, {headers: this.headers})
+            .map(this.extractData)
+            .catch(this.handleError);
+    }
+
     private extractData(res: Response) {
         let body = res.json();
         return body || { };

@@ -25,9 +25,9 @@
                         </td>
                     </tr>
                     <tr>
-                        <th>Subscriptions list:</th>
+                        <th>Sensor data list:</th>
                         <td>
-                            <a href="#/subscriptions/node/{{ node.id }}/index">link</a>
+                            <a [routerLink]="['/sensordata/node', node.id]">link</a>
                         </td>
                     </tr>
                 </tbody>
