@@ -15,6 +15,7 @@ import { SensorNewComponent } from './sensors/sensor-new.component';
 
 import { SensorDataComponent } from './sensordatas/sensordata.component';
 import { SensorDataNodeComponent } from './sensordatas/sensordata-node.component';
+import { SensorDataSensorComponent } from './sensordatas/sensordata-sensor.component';
 
 const routes: Routes = [
     { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -32,6 +33,7 @@ const routes: Routes = [
     // sensor data
     { path: 'sensordata', component: SensorDataComponent },
     { path: 'sensordata/node/:nodeid', component: SensorDataNodeComponent },
+    { path: 'sensordata/node/:nodeid/sensor/:sensorid', component: SensorDataSensorComponent },
     // otherwise
     { path: '**', component: PageNotFoundComponent }
 ];

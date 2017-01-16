@@ -3,13 +3,15 @@ import { CoreModule } from '../core/core.module';
 
 import { SensorDataComponent } from './sensordata.component';
 import { SensorDataNodeComponent } from './sensordata-node.component';
+import { SensorDataSensorComponent } from './sensordata-sensor.component';
 import { SensorDataService } from './sensordata.service';
 
 @NgModule({
     imports: [ CoreModule ],
     declarations: [ 
         SensorDataComponent,
-        SensorDataNodeComponent
+        SensorDataNodeComponent,
+        SensorDataSensorComponent
     ],
     providers: [ SensorDataService ]
 })

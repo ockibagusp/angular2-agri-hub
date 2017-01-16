@@ -9,7 +9,7 @@
 		    		<tr>
 		    			<th>Sensor data list:</th>
 		    			<td>
-							<a href="#/subscriptions/node/{{ nodeid }}/sensor/{{ sensor.id }}/index">
+							<a [routerLink]="['/sensordata/node', parentNode.id, 'sensor', sensor.id]">
 								Link
 							</a>
 						</td>

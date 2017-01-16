@@ -24,8 +24,15 @@ export class SensorDataService {
             .catch(this.handleError);
     }
 
-    getSensorDataByNode(page:number=1,nodeid:string): Observable<any> {
+    getSensorDataByNode(page:number=1, nodeid:string): Observable<any> {
         return this.http.get(`${this.nodeUrl}/node/${nodeid}/?page=${page}`, {headers: this.headers})
+            .map(this.extractData)
+            .catch(this.handleError);
+    }
+
+    getSensorDataBySensor(page:number=1, nodeid:string, sensorid:string): Observable<any> {
+        return this.http.get(`${this.nodeUrl}/node/${nodeid}/sensor/${sensorid}/?page=${page}`, 
+            {headers: this.headers})
             .map(this.extractData)
             .catch(this.handleError);
     }
