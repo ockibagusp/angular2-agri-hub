@@ -22,4 +22,8 @@ export class CredentialsService {
     getToken(): any {
         return this.cookieService.getObject('token');
     }
+
+    deleteAll(): void {
+        this.cookieService.removeAll();
+    }
 }
