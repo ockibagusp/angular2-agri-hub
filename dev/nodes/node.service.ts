@@ -42,6 +42,12 @@ export class NodeService{
         return promise.map(this.extractData).catch(this.handleError);
     }
 
+    delete(url: string): Observable<void> {
+        return this.http.delete(url)
+            .map(() => null)
+            .catch(this.handleError);
+    }
+
     private extractData(res: Response) {
         let body = res.json();
         return body || { };

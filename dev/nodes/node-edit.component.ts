@@ -71,6 +71,16 @@ export class NodeEditComponent {
             );
     }
 
+    delete(): void {
+        if(confirm("Are you sure?")) {
+            this.nodeService.delete(this.node.url)
+                .subscribe(
+                    () => this.router.navigate(['/nodes/']),
+                    error => console.log(error)
+                );
+        }
+    }
+
     private extractErrors(err: any): void {
         let errorsParse = JSON.parse(err._body);
         this.errors = [];

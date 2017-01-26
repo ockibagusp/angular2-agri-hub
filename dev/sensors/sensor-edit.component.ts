@@ -21,7 +21,7 @@ export class SensorEditComponent implements OnInit {
         private nodeService: NodeService,
         private sensorService: SensorService,
         private router: Router,
-        private route: ActivatedRoute 
+        private route: ActivatedRoute
     ) {}
 
     ngOnInit() {
@@ -55,6 +55,16 @@ export class SensorEditComponent implements OnInit {
                 sensor => this.router.navigate(['/nodes/', this.parentNode.id, 'sensors']),
                 error => console.log(error)
             );
+    }
+
+    delete(): void {
+        if(confirm("Are you sure?")) {
+            this.sensorService.delete(this.sensor.url)
+                .subscribe(
+                    () => this.router.navigate(['/nodes/', this.parentNode.id, 'sensors']),
+                    error => console.log(error)
+                );
+        }
     }
 
     private setUpNode(node: Node) {

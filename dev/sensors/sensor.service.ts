@@ -44,6 +44,12 @@ export class SensorService {
         return promise.map(this.extractData).catch(this.handleError);
     }
 
+    delete(url: string): Observable<void> {
+        return this.http.delete(url, {headers: this.headers})
+            .map(() => null)
+            .catch(this.handleError);
+    }
+
     private extractData(res: Response) {
         let body = res.json();
         return body || { };
