@@ -7,15 +7,20 @@ import 'rxjs/add/operator/catch';
 import { Node } from './node.model';
 import { AgriHub } from '../global/agrihub';
 
+import { CredentialsService } from '../core/authenticate/credentials.service';
+
 @Injectable()
-export class NodeService{
+export class NodeService {
     private nodeUrl = AgriHub.BASE_API_URL+'/nodes/';
     private headers = new Headers({
-        'Content-Type': 'application/json',
-        'Authorization': 'JWT ' + AgriHub.TOKEN
+            'Content-Type': 'application/json',
+            'Authorization': 'JWT ' + this.credentialsService.getToken()
     });
 
-    constructor(private http: Http) {}
+    constructor(
+        private http: Http,
+        private credentialsService: CredentialsService
+    ) {}
 
     getNodes(): Observable<any> {
         return this.http.get(this.nodeUrl, {headers: this.headers})

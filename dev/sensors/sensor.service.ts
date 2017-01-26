@@ -8,15 +8,20 @@ import { AgriHub } from '../global/agrihub';
 import { Node } from '../nodes/node.model';
 import { Sensor } from './sensor.model';
 
+import { CredentialsService } from '../core/authenticate/credentials.service';
+
 @Injectable()
 export class SensorService {
     private nodeUrl = AgriHub.BASE_API_URL+'/nodes';
     private headers = new Headers({
         'Content-Type': 'application/json',
-        'Authorization': 'JWT ' + AgriHub.TOKEN
+        'Authorization': 'JWT ' + this.credentialsService.getToken()
     });
 
-    constructor(private http: Http) {}
+    constructor(
+        private http: Http,
+        private credentialsService: CredentialsService
+    ) {}
 
     getSensors(nodeid: string): Observable<any> {
         return this.http.get(`${this.nodeUrl}/${nodeid}/sensor/`, {headers: this.headers})

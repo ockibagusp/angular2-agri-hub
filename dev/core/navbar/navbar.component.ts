@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { CredentialsService } from '../authenticate/credentials.service';
 
 @Component({
     selector: 'nav-bar',
@@ -21,6 +22,15 @@ import { Component } from '@angular/core';
         </nav>
     `
 })
-export class NavbarComponent{
-    username = 'basukicahya';
+export class NavbarComponent implements OnInit {
+    username: string;
+
+    constructor(
+        private credentialsService: CredentialsService
+    ) {}
+
+    ngOnInit() {
+        this.username = this.credentialsService.getUser().username;
+    }
+
 }

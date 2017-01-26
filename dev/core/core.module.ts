@@ -10,6 +10,8 @@ import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import { PageNotFoundComponent } from './exceptions/page-not-found.component';
 import { LoginComponent } from './login/login.component';
 
+import { CookieService } from 'angular2-cookie/services/cookies.service';
+import { CredentialsService } from './authenticate/credentials.service';
 import { LoginService } from './login/login.service';
 
 @NgModule({
@@ -36,6 +38,10 @@ import { LoginService } from './login/login.service';
         PageNotFoundComponent,
         LoginComponent
     ],
-    providers: [ LoginService ]
+    providers: [ 
+        LoginService,
+        CookieService,
+        CredentialsService 
+    ]
 })
 export class CoreModule {}

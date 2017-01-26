@@ -7,15 +7,20 @@ import 'rxjs/add/operator/catch';
 import { SensorData } from './sensordata.model';
 import { AgriHub } from '../global/agrihub';
 
+import { CredentialsService } from '../core/authenticate/credentials.service';
+
 @Injectable()
 export class SensorDataService {
     private nodeUrl = AgriHub.BASE_API_URL+'/subscriptions/';
     private headers = new Headers({
         'Content-Type': 'application/json',
-        'Authorization': 'JWT ' + AgriHub.TOKEN
+        'Authorization': 'JWT ' + this.credentialsService.getToken()
     });
 
-    constructor(private http: Http){}
+    constructor(
+        private http: Http,
+        private credentialsService: CredentialsService
+    ){}
 
     getSensorDataByUser(page:number=1): Observable<any> {
         var user = 'basukicahya'; // => uses cookies soon
