@@ -7,12 +7,15 @@ import { SensorService } from './sensor.service';
 import { Node } from '../nodes/node.model';
 import { Sensor } from './sensor.model';
 
+import { AuthenticateService } from '../core/authenticate/authenticate.service';
+import { IsResearcherComponent } from '../core/authenticate/authenticate.component';
+
 @Component({
     moduleId: module.id,
     selector: 'sensor-new',
     templateUrl: 'sensor-form.tpl.html'
 })
-export class SensorNewComponent implements OnInit {
+export class SensorNewComponent extends IsResearcherComponent implements OnInit {
     parentNode: Node;
     sensor: Sensor;
     is_new: boolean = true;
@@ -21,9 +24,13 @@ export class SensorNewComponent implements OnInit {
     constructor(
         private nodeService: NodeService,
         private sensorService: SensorService,
-        private router: Router,
-        private route: ActivatedRoute 
-    ){}
+        private route: ActivatedRoute,
+        public router: Router,
+        public authenticateService: AuthenticateService 
+    ){
+        super(router, authenticateService);
+        super.ngOnInit();
+    }
 
     ngOnInit() {
         this.getNodes();
