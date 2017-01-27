@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+import { MainAppComponent } from './app.component';
 import { LoginComponent } from './core/login/login.component';
+import { LogoutComponent } from './core/authenticate/logout.component';
 import { PageNotFoundComponent } from './core/exceptions/page-not-found.component';
 import { NodeComponent } from './nodes/node.component';
 import { NodeDetailComponent } from './nodes/node-detail.component';
@@ -18,8 +20,9 @@ import { SensorDataNodeComponent } from './sensordatas/sensordata-node.component
 import { SensorDataSensorComponent } from './sensordatas/sensordata-sensor.component';
 
 const routes: Routes = [
-    { path: '', redirectTo: '/login', pathMatch: 'full' },
+    { path: '', component: MainAppComponent, pathMatch: 'full' },
     { path: 'login', component: LoginComponent },
+    { path: 'logout', component: LogoutComponent },
     // node
     { path: 'nodes', component: NodeComponent },
     { path: 'nodes/new', component: NodeNewComponent },
