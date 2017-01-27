@@ -4,6 +4,9 @@ import { NodeService } from './node.service';
 import { Node } from './node.model';
 import 'rxjs/add/operator/switchMap';
 
+import { AuthenticateService } from '../core/authenticate/authenticate.service';
+import { IsResearcherComponent } from '../core/authenticate/authenticate.component';
+
 interface Errors {
     field: string,
     message: string
@@ -14,7 +17,7 @@ interface Errors {
     selector: 'node-edit',
     templateUrl: 'node-form.tpl.html'
 })
-export class NodeEditComponent {
+export class NodeEditComponent extends IsResearcherComponent {
     links: any[];
     node: Node;
     unlimited: boolean;
@@ -24,9 +27,13 @@ export class NodeEditComponent {
 
     constructor(
         private nodeService: NodeService,
-        private router: Router,
-        private route: ActivatedRoute    
-    ) {}
+        private route: ActivatedRoute,
+        public router: Router,
+        public authenticateService: AuthenticateService
+    ) {
+        super(router, authenticateService);
+        super.ngOnInit();
+    }
 
     ngOnInit() {
         this.route.params

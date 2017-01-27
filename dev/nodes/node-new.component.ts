@@ -3,6 +3,9 @@ import { Router } from '@angular/router';
 import { Node } from './node.model';
 import { NodeService } from './node.service';
 
+import { AuthenticateService } from '../core/authenticate/authenticate.service';
+import { IsResearcherComponent } from '../core/authenticate/authenticate.component';
+
 interface Errors {
     field: string,
     message: string
@@ -13,7 +16,7 @@ interface Errors {
     selector: 'node-new',
     templateUrl: 'node-form.tpl.html'
 })
-export class NodeNewComponent {
+export class NodeNewComponent extends IsResearcherComponent {
     is_new: boolean = true;
     links: any[];
     node: Node;
@@ -23,8 +26,12 @@ export class NodeNewComponent {
 
     constructor(
         private nodeService: NodeService,
-        private router: Router
-    ) {}
+        public router: Router,
+        public authenticateService: AuthenticateService
+    ) {
+        super(router, authenticateService);
+        super.ngOnInit();
+    }
 
     ngOnInit() {
         this.links = [

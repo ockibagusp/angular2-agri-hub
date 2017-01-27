@@ -4,7 +4,7 @@ import { SensorModule } from './sensors/sensor.module';
 import { SensorDataModule } from './sensordatas/sensordata.module';
 import { AppRoutingModule } from './app-routing.module';
 
-import { AppComponent }  from './app.component';
+import { AppComponent, MainAppComponent }  from './app.component';
 
 @NgModule({
     imports: [
@@ -13,7 +13,10 @@ import { AppComponent }  from './app.component';
         SensorModule,
         SensorDataModule
     ],
-    declarations: [ AppComponent ],
+    declarations: [ 
+        AppComponent,
+        MainAppComponent
+    ],
     bootstrap: [ AppComponent ]
 })
 export class AppModule {}

@@ -30,7 +30,10 @@ export class NavbarComponent implements OnInit {
     ) {}
 
     ngOnInit() {
-        this.username = this.credentialsService.getUser().username;
+        var user = this.credentialsService.getUser() || '';
+        if('' != user) {
+            this.username = this.credentialsService.getUser().username;
+        }
     }
 
 }

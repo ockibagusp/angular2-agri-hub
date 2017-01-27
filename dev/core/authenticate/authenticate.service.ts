@@ -14,7 +14,7 @@ export class AuthenticateService {
     }
 
     isAdmin(): boolean {
-        if(!this.isAuth) {
+        if(!this.isAuth()) {
             return false;
         }
 
@@ -22,10 +22,10 @@ export class AuthenticateService {
     }
 
     isResearcher(): boolean {
-        if(!this.isAuth) {
+        if(!this.isAuth()) {
             return false;
+        } else {
+            return 0 == this.credentialsService.getUser().is_admin;
         }
-
-        return 0 == this.credentialsService.getUser().is_admin;
     }
 }
