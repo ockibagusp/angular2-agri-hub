@@ -42,11 +42,8 @@ export class NodeEditComponent extends IsResearcherComponent {
                 node => this.setUpNode(node),
                 error => console.log(error)
             );
-        
+        // TODO why?
         this.node = new Node;
-        this.node.label = "FILKOM_1";
-        this.node.secretkey = "rahasia";
-        this.node.subsperday = 20;
     }
 
     private setUpNode(node: Node): void {
