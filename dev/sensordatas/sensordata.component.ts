@@ -2,12 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { SensorDataService } from './sensordata.service';
 import { SensorData } from './sensordata.model';
 
+import { Router} from '@angular/router';
+import { AuthenticateService } from '../core/authenticate/authenticate.service';
+import { IsResearcherComponent } from '../core/authenticate/authenticate.component';
+
 @Component({
     moduleId: module.id,
     selector: 'sensordata-list',
     templateUrl: 'sensordata.tpl.html'
 })
-export class SensorDataComponent implements OnInit {
+export class SensorDataComponent extends IsResearcherComponent implements OnInit {
     sensordatas: SensorData[];
     links: any[];
     title = "All";
@@ -15,7 +19,14 @@ export class SensorDataComponent implements OnInit {
     maxSize = 10;
     collectionSize: number;
 
-    constructor(private sensorDataService: SensorDataService ) {}
+    constructor(
+        private sensorDataService: SensorDataService,
+        public router: Router,
+        public authenticateService: AuthenticateService
+    ) {
+        super(router, authenticateService);
+        super.ngOnInit();
+    }
     
     ngOnInit() {
         this.getSensorData();

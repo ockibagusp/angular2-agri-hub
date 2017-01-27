@@ -9,12 +9,16 @@ import { Node } from '../nodes/node.model';
 import { Sensor } from '../sensors/sensor.model';
 import { SensorData } from './sensordata.model';
 
+import { Router} from '@angular/router';
+import { AuthenticateService } from '../core/authenticate/authenticate.service';
+import { IsResearcherComponent } from '../core/authenticate/authenticate.component';
+
 @Component({
     moduleId: module.id,
     selector: 'sensordata-sensor',
     templateUrl: 'sensordata.tpl.html'
 })
-export class SensorDataSensorComponent implements OnInit {
+export class SensorDataSensorComponent extends IsResearcherComponent implements OnInit {
     node: Node;
     sensor: Sensor;
     sensordatas: SensorData[];
@@ -28,8 +32,13 @@ export class SensorDataSensorComponent implements OnInit {
         private nodeService: NodeService,
         private sensorService: SensorService,
         private sensorDataService: SensorDataService,
-        private route: ActivatedRoute 
-    ) {}
+        private route: ActivatedRoute,
+        public router: Router,
+        public authenticateService: AuthenticateService
+    ) {
+        super(router, authenticateService);
+        super.ngOnInit();
+    }
 
     ngOnInit() {
         this.links = [
