@@ -2,6 +2,7 @@ import { NgModule }      from '@angular/core';
 import { NodeModule } from './nodes/node.module';
 import { SensorModule } from './sensors/sensor.module';
 import { SensorDataModule } from './sensordatas/sensordata.module';
+import { UserModule } from './users/user.module';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent, MainAppComponent }  from './app.component';
@@ -11,7 +12,8 @@ import { AppComponent, MainAppComponent }  from './app.component';
         AppRoutingModule,
         NodeModule,
         SensorModule,
-        SensorDataModule
+        SensorDataModule,
+        UserModule
     ],
     declarations: [ 
         AppComponent,
