@@ -19,6 +19,11 @@ import { SensorDataComponent } from './sensordatas/sensordata.component';
 import { SensorDataNodeComponent } from './sensordatas/sensordata-node.component';
 import { SensorDataSensorComponent } from './sensordatas/sensordata-sensor.component';
 
+import { UserComponent } from './users/user.component';
+import { UserDetailComponent } from './users/user-detail.component';
+import { UserNewComponent } from './users/user-new.component';
+import { UserEditComponent } from './users/user-edit.component';
+
 const routes: Routes = [
     { path: '', component: MainAppComponent, pathMatch: 'full' },
     { path: 'login', component: LoginComponent },
@@ -37,6 +42,11 @@ const routes: Routes = [
     { path: 'sensordata', component: SensorDataComponent },
     { path: 'sensordata/node/:nodeid', component: SensorDataNodeComponent },
     { path: 'sensordata/node/:nodeid/sensor/:sensorid', component: SensorDataSensorComponent },
+    // user
+    { path: 'users', component: UserComponent },
+    { path: 'users/new', component: UserNewComponent },
+    { path: 'users/view/:userid', component: UserDetailComponent },
+    { path: 'users/edit/:userid', component: UserEditComponent },
     // otherwise
     { path: '**', component: PageNotFoundComponent }
 ];
