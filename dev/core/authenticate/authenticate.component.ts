@@ -33,7 +33,7 @@ export class IsAdminComponent implements OnInit {
     ngOnInit() {
         if(!this.authenticateService.isAuth()) {
             window.location.href = AgriHub.BASE_URL + 'login';
-        } else if(!this.authenticateService.isAuth()) {
+        } else if(!this.authenticateService.isAdmin()) {
             this.router.navigate(['/403']);
         }
     }
