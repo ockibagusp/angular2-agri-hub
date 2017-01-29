@@ -1,25 +1,30 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Http } from '@angular/http';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { NodeService } from './node.service';
 import { Node } from './node.model';
 import 'rxjs/add/operator/switchMap';
+
+import { AuthenticateService } from '../core/authenticate/authenticate.service';
+import { IsResearcherComponent } from '../core/authenticate/authenticate.component';
 
 @Component({
     moduleId: module.id,
     selector: 'node-detail',
     templateUrl: 'node-detail.tpl.html'
 })
-export class NodeDetailComponent implements OnInit {
+export class NodeDetailComponent extends IsResearcherComponent implements OnInit {
     node: Node;
     links: any[]; // breadcrumb
 
     constructor(
-        private http: Http,
         private nodeService: NodeService,
-        private router: Router, 
-        private route: ActivatedRoute
-    ) {}
+        private route: ActivatedRoute,
+        public router: Router, 
+        public authenticateService: AuthenticateService
+    ) {
+        super(router, authenticateService);
+        super.ngOnInit();
+    }
 
     ngOnInit() {
         this.route.params

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from './login.service';
+import { CredentialsService } from '../authenticate/credentials.service';
 
 @Component({
     moduleId: module.id,
@@ -14,7 +15,11 @@ export class LoginComponent implements OnInit {
 
     errors: string;
 
-    constructor(private router: Router, private loginService: LoginService) {}
+    constructor(
+        private router: Router, 
+        private loginService: LoginService,
+        private credentialsService: CredentialsService
+    ) {}
 
     ngOnInit() {}
 
@@ -24,9 +29,10 @@ export class LoginComponent implements OnInit {
             .catch(error => this.errors = error.__all__[0])
     }
 
-    setAndRedirect(response: JSON) {
-        console.log(response);
-        this.router.navigate(['/nodes']);
+    setAndRedirect(response: any) {
+        this.credentialsService.setUser(response.user);
+        this.credentialsService.setToken(response.token);
+        this.router.navigate(['/']);
     }
     
 }

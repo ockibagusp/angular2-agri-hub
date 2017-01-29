@@ -3,9 +3,9 @@
     <breadcrumb [title]="is_new ? 'New Node' : 'Edit Node'" [links]="links"></breadcrumb>
     <div class="row-fluid">
         <div class="col-md-6">
-            <!--<ul ng-repeat="error in errors">
+            <ul *ngFor="let error of errors">
                 <li style="color: red">{{ error.field}} -> {{ error.message }}</li>
-            </ul>-->
+            </ul>
             <form name="nodeForm" (ngSubmit)="save()" class="form-horizontal">
                 <div class="form-group">
                     <label class="control-label" for="label">Label:</label>
@@ -24,9 +24,7 @@
                 </div>
                 <div class="form-actions">
                     <button class="btn btn-primary">Save</button>
-                    <button type="button" confirm-modal="delete()" rel="Are you sure to delete"
-                        object="Node" objectlabel="node.label" url="node.url" 
-                        redirecturl="/nodes/index" *ngIf="node.id"class="btn">
+                    <button type="button" *ngIf="node.id" class="btn" (click)="delete()">
                         Delete
                     </button>
                 </div>

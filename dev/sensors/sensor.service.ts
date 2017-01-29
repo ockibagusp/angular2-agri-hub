@@ -4,17 +4,18 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
-import { Node } from './node.model';
 import { AgriHub } from '../global/agrihub';
+import { Node } from '../nodes/node.model';
+import { Sensor } from './sensor.model';
 
 import { CredentialsService } from '../core/authenticate/credentials.service';
 
 @Injectable()
-export class NodeService {
-    private nodeUrl = AgriHub.BASE_API_URL+'/nodes/';
+export class SensorService {
+    private nodeUrl = AgriHub.BASE_API_URL+'/nodes';
     private headers = new Headers({
-            'Content-Type': 'application/json',
-            'Authorization': 'JWT ' + this.credentialsService.getToken()
+        'Content-Type': 'application/json',
+        'Authorization': 'JWT ' + this.credentialsService.getToken()
     });
 
     constructor(
@@ -22,33 +23,34 @@ export class NodeService {
         private credentialsService: CredentialsService
     ) {}
 
-    getNodes(): Observable<any> {
-        return this.http.get(this.nodeUrl, {headers: this.headers})
+    getSensors(nodeid: string): Observable<any> {
+        return this.http.get(`${this.nodeUrl}/${nodeid}/sensor/`, {headers: this.headers})
             .map(this.extractData)
             .catch(this.handleError);
     }
 
-    getNode(id: string): Observable<Node> {
-        return this.http.get(`${this.nodeUrl}/${id}/`)
+    getSensor(nodeid: string, sensorid: string): Observable<any> {
+        return this.http.get(`${this.nodeUrl}/${nodeid}/sensor/${sensorid}/`, {headers: this.headers})
             .map(this.extractData)
             .catch(this.handleError);
     }
 
-    save(node: Node): Observable<Node> {
-        const url = node.id ? `${this.nodeUrl}/${node.id}/` : this.nodeUrl;
+    save(node: Node, sensor: Sensor): Observable<any> {
+        const url = sensor.id ? `${this.nodeUrl}/${node.id}/sensor/${sensor.id}/` : 
+            `${this.nodeUrl}/${node.id}/sensor/`;
         var promise: Observable<Response>;
 
-        if (url == this.nodeUrl ) {
-            promise = this.http.post(url, JSON.stringify(node), {headers: this.headers});
+        if(url == `${this.nodeUrl}/${node.id}/sensor/`) {
+            promise = this.http.post(url, JSON.stringify(sensor), {headers: this.headers});
         } else {
-            promise = this.http.put(url, JSON.stringify(node), {headers: this.headers});
+            promise = this.http.put(url, JSON.stringify(sensor), {headers: this.headers});
         }
 
         return promise.map(this.extractData).catch(this.handleError);
     }
 
     delete(url: string): Observable<void> {
-        return this.http.delete(url)
+        return this.http.delete(url, {headers: this.headers})
             .map(() => null)
             .catch(this.handleError);
     }
@@ -62,4 +64,4 @@ export class NodeService {
         console.error('An error occurred', error); // for demo purposes only
         return Promise.reject(error.message || error);
     }
-}
+} 

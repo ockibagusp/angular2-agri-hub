@@ -4,22 +4,36 @@ import { NodeService } from './node.service';
 import { Node } from './node.model';
 import 'rxjs/add/operator/switchMap';
 
+import { AuthenticateService } from '../core/authenticate/authenticate.service';
+import { IsResearcherComponent } from '../core/authenticate/authenticate.component';
+
+interface Errors {
+    field: string,
+    message: string
+}
+
 @Component({
     moduleId: module.id,
     selector: 'node-edit',
     templateUrl: 'node-form.tpl.html'
 })
-export class NodeEditComponent {
+export class NodeEditComponent extends IsResearcherComponent {
     links: any[];
     node: Node;
     unlimited: boolean;
     _initial_subsperday: number;
 
+    errors: Errors[];
+
     constructor(
         private nodeService: NodeService,
-        private router: Router,
-        private route: ActivatedRoute    
-    ) {}
+        private route: ActivatedRoute,
+        public router: Router,
+        public authenticateService: AuthenticateService
+    ) {
+        super(router, authenticateService);
+        super.ngOnInit();
+    }
 
     ngOnInit() {
         this.route.params
@@ -28,11 +42,8 @@ export class NodeEditComponent {
                 node => this.setUpNode(node),
                 error => console.log(error)
             );
-        
+        // TODO why?
         this.node = new Node;
-        this.node.label = "FILKOM_1";
-        this.node.secretkey = "rahasia";
-        this.node.subsperday = 20;
     }
 
     private setUpNode(node: Node): void {
@@ -60,7 +71,30 @@ export class NodeEditComponent {
         this.nodeService.save(this.node)
             .subscribe(
                 node => this.router.navigate(['/nodes/view', node.id]),
-                error => console.log(error)
+                error => this.extractErrors(error)
             );
+    }
+
+    delete(): void {
+        if(confirm("Are you sure?")) {
+            this.nodeService.delete(this.node.url)
+                .subscribe(
+                    () => this.router.navigate(['/nodes/']),
+                    error => console.log(error)
+                );
+        }
+    }
+
+    private extractErrors(err: any): void {
+        let errorsParse = JSON.parse(err._body);
+        this.errors = [];
+        for(let index in errorsParse) {
+            if(errorsParse.hasOwnProperty(index)) {
+                this.errors.push({
+                    field: index,
+                    message: errorsParse[index][0]
+                })
+            }
+        }
     }
 }

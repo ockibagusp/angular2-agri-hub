@@ -4,14 +4,14 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
-import { Node } from './node.model';
+import { User } from './user.model';
 import { AgriHub } from '../global/agrihub';
 
 import { CredentialsService } from '../core/authenticate/credentials.service';
 
 @Injectable()
-export class NodeService {
-    private nodeUrl = AgriHub.BASE_API_URL+'/nodes/';
+export class UserService {
+    private userUrl = AgriHub.BASE_API_URL+'/users/';
     private headers = new Headers({
             'Content-Type': 'application/json',
             'Authorization': 'JWT ' + this.credentialsService.getToken()
@@ -22,26 +22,26 @@ export class NodeService {
         private credentialsService: CredentialsService
     ) {}
 
-    getNodes(): Observable<any> {
-        return this.http.get(this.nodeUrl, {headers: this.headers})
+    getUsers(): Observable<any> {
+        return this.http.get(this.userUrl, {headers: this.headers})
             .map(this.extractData)
             .catch(this.handleError);
     }
 
-    getNode(id: string): Observable<Node> {
-        return this.http.get(`${this.nodeUrl}/${id}/`)
+    getUser(id: string): Observable<User> {
+        return this.http.get(`${this.userUrl}/${id}`)
             .map(this.extractData)
             .catch(this.handleError);
     }
 
-    save(node: Node): Observable<Node> {
-        const url = node.id ? `${this.nodeUrl}/${node.id}/` : this.nodeUrl;
+    save(user: User): Observable<User> {
+        const url = user.id ? `${this.userUrl}/${user.id}/` : this.userUrl;
         var promise: Observable<Response>;
 
-        if (url == this.nodeUrl ) {
-            promise = this.http.post(url, JSON.stringify(node), {headers: this.headers});
+        if (url == this.userUrl ) {
+            promise = this.http.post(url, JSON.stringify(user), {headers: this.headers});
         } else {
-            promise = this.http.put(url, JSON.stringify(node), {headers: this.headers});
+            promise = this.http.put(url, JSON.stringify(user), {headers: this.headers});
         }
 
         return promise.map(this.extractData).catch(this.handleError);
