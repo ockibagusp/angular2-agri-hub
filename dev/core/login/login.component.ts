@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
     setAndRedirect(response: any) {
         this.credentialsService.setUser(response.user);
         this.credentialsService.setToken(response.token);
-        this.router.navigate(['/nodes']);
+        this.router.navigate(['/']);
     }
     
 }
