@@ -24,8 +24,10 @@
 			 		</tbody>
 			 	</table>
 				<strong *ngIf="sensordatas?.length == 0">No Data</strong>
-				<ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [maxSize]="maxSize" [rotate]="true" 
-					[ellipses]="false" [boundaryLinks]="true" (pageChange)="pageChange()"></ngb-pagination>
+				<ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [maxSize]="maxSize" 
+					[rotate]="true" [ellipses]="false" [boundaryLinks]="true" (pageChange)="pageChange()" 
+					*ngIf="sensordatas?.length != 0">
+				</ngb-pagination>
             </div>
         </div>
     </div>
