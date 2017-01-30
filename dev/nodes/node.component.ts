@@ -26,7 +26,8 @@ export class NodeComponent extends IsResearcherComponent implements OnInit {
     
     ngOnInit(): void {
         this.links = [
-            { label: "Home", url: "/" , is_active: true}
+            { label: "Home", url: "/"  },
+            { label: "Nodes", is_active: true}
         ]
         this.getNodes();
     }
