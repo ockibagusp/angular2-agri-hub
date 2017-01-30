@@ -10,3 +10,15 @@ Agrihub Client; code with Angular2 and ❤
 
 # Cons
 1. Storing raw data on browser cookie is very risk, inseccure, and bad-practice; i will fix this problem later...
+
+# Instruction
+1. Install NodeJS
+2. Install NPM
+3. Clone Repository
+`$ git clone https://github.com/OckiFals/angular2-agri-hub.git`
+4. Change directory
+`$ cd angular2-agri-hub`
+5. Install Dependencies (Angular2, TypeScript, RxJS, etc.)
+`$ npm install`
+6. Serve...
+`$ npm start`
