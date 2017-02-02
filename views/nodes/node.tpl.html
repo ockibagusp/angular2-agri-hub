@@ -2,18 +2,66 @@
 <div class="container">
     <breadcrumb [title]="'Nodes List'" [links]="links"></breadcrumb>
     <div class="row-fluid">
-        <div class="span10">
+        <div class="col-md-12">
             <h3>Node List</h3>
-            <ul class="nodes">
-                <li *ngFor="let node of nodes">
-                    <div>
-                        <a [routerLink]="['/nodes/view', node.id]">
-                            {{node.label}}
-                        </a>
-                    </div>
-                </li>
-            </ul>
-            <strong *ngIf="nodes?.length == 0">No Data</strong>
+            <ngb-tabset type="pills" [(activeId)]="activeId" (tabChange)="tabChange($event)">
+                <ngb-tab title="All" id="all">
+                    <template ngbTabContent>
+                        <ul class="nodes">
+                            <li *ngFor="let node of nodes">
+                                <div>
+                                    <a [routerLink]="['/nodes/view', node.id]">
+                                        {{node.label}}
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
+                        <strong *ngIf="nodes?.length == 0">No Data</strong>
+                    </template>
+                </ngb-tab>
+                <ngb-tab title="Public" id="public">
+                    <template ngbTabContent>
+                        <ul class="nodes">
+                            <li *ngFor="let node of nodes">
+                                <div>
+                                    <a [routerLink]="['/nodes/view', node.id]">
+                                        {{node.label}}
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
+                        <strong *ngIf="nodes?.length == 0">No Data</strong>
+                    </template>
+                </ngb-tab>
+                <ngb-tab title="Private" id="private">
+                    <template ngbTabContent>
+                        <ul class="nodes">
+                            <li *ngFor="let node of nodes">
+                                <div>
+                                    <a [routerLink]="['/nodes/view', node.id]">
+                                        {{node.label}}
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
+                        <strong *ngIf="nodes?.length == 0">No Data</strong>
+                    </template>
+                </ngb-tab>
+                <ngb-tab title="Global" id="global">
+                    <template ngbTabContent>
+                        <ul class="nodes">
+                            <li *ngFor="let node of nodes">
+                                <div>
+                                    <a [routerLink]="['/nodes/view', node.id]">
+                                        {{node.label}}
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
+                        <strong *ngIf="nodes?.length == 0">No Data</strong>
+                    </template>
+                </ngb-tab>
+            </ngb-tabset>
             <div class="alert alert-info" role="alert">
                 New node: <a [routerLink]="['/nodes/new']" class="btn btn-primary">Link</a>
             </div>

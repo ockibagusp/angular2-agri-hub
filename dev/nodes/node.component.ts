@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NodeService } from './node.service';
 import { Node } from './node.model';
-
+import { NgbTabChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
 import { AuthenticateService } from '../core/authenticate/authenticate.service';
 import { IsResearcherComponent } from '../core/authenticate/authenticate.component';
@@ -9,11 +9,13 @@ import { IsResearcherComponent } from '../core/authenticate/authenticate.compone
 @Component({
     moduleId: '../views/nodes/',
     selector: 'node-list',
-    templateUrl: 'node.tpl.html'
+    templateUrl: 'node.tpl.html',
 })
 export class NodeComponent extends IsResearcherComponent implements OnInit {
+    
     nodes: Node[];
     links: any[]; // breadcrumb
+    activeId = "all";
     
     constructor(
         private nodeService: NodeService,
@@ -32,11 +34,16 @@ export class NodeComponent extends IsResearcherComponent implements OnInit {
         this.getNodes();
     }
 
-    getNodes(): void {
-        this.nodeService.getNodes()
+    getNodes(role: string=""): void {
+        this.nodeService.getNodes(role)
             .subscribe(
                 res => this.nodes = res.results as Node[],
                 error => console.log(error)
             );
+    }
+
+    tabChange($event: NgbTabChangeEvent): void {
+        console.log($event.nextId)
+        this.getNodes($event.nextId);
     }
 }

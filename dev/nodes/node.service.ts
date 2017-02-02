@@ -22,14 +22,24 @@ export class NodeService {
         private credentialsService: CredentialsService
     ) {}
 
-    getNodes(): Observable<any> {
-        return this.http.get(this.nodeUrl, {headers: this.headers})
+    getNodes(role: string): Observable<any> {
+        let extraParam = "";
+
+        if ("public" == role) {
+            extraParam += "?role=public";
+        } else if ("private" == role) {
+            extraParam += "?role=private";
+        } else if ("global" == role) {
+            extraParam += "?role=global";
+        }
+
+        return this.http.get(`${this.nodeUrl}/${extraParam}`)
             .map(this.extractData)
             .catch(this.handleError);
     }
 
     getNode(id: string): Observable<Node> {
-        return this.http.get(`${this.nodeUrl}/${id}/`)
+        return this.http.get(`${this.nodeUrl}/${id}/`, {headers: this.headers})
             .map(this.extractData)
             .catch(this.handleError);
     }
