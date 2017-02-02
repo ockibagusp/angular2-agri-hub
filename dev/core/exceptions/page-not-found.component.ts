@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 
 @Component({
-  template: '<h2>Page not found</h2>'
+  moduleId: '../views/core/exceptions/',
+  templateUrl: 'default.exception.html',
+  styleUrls: ['default.exception.css']
 })
 export class PageNotFoundComponent {}
