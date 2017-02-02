@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { MainAppComponent } from './app.component';
 import { LoginComponent } from './core/login/login.component';
 import { LogoutComponent } from './core/authenticate/logout.component';
-import { PageNotFoundComponent } from './core/exceptions/exception.component';
+import { PageNotFoundComponent, ForbiddenComponent } from './core/exceptions/exception.component';
 import { NodeComponent } from './nodes/node.component';
 import { NodeDetailComponent } from './nodes/node-detail.component';
 import { NodeNewComponent } from './nodes/node-new.component';
@@ -48,6 +48,7 @@ const routes: Routes = [
     { path: 'users/view/:userid', component: UserDetailComponent },
     { path: 'users/edit/:userid', component: UserEditComponent },
     // otherwise
+    { path: '403', component: ForbiddenComponent },
     { path: '**', component: PageNotFoundComponent }
 ];
 
