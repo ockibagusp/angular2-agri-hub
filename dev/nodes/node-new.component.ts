@@ -12,7 +12,7 @@ interface Errors {
 }
 
 @Component({
-    moduleId: module.id,
+    moduleId: '../views/nodes/',
     selector: 'node-new',
     templateUrl: 'node-form.tpl.html'
 })

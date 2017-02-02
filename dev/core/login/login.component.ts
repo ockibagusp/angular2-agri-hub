@@ -4,7 +4,7 @@ import { LoginService } from './login.service';
 import { CredentialsService } from '../authenticate/credentials.service';
 
 @Component({
-    moduleId: module.id,
+    moduleId: '../views/core/login/',
     selector: 'login',
     templateUrl: 'login.tpl.html',
     styleUrls: ['login.component.css']

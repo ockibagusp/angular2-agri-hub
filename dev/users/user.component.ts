@@ -8,7 +8,7 @@ import { AuthenticateService } from '../core/authenticate/authenticate.service';
 import { IsAdminComponent } from '../core/authenticate/authenticate.component';
 
 @Component({
-    moduleId: module.id,
+    moduleId: '../views/users/',
     selector: 'users',
     templateUrl: 'user.tpl.html'
 })

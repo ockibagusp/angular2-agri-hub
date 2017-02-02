@@ -11,7 +11,7 @@ import { AuthenticateService } from '../core/authenticate/authenticate.service';
 import { IsResearcherComponent } from '../core/authenticate/authenticate.component';
 
 @Component({
-    moduleId: module.id,
+    moduleId: '../views/sensors/',
     selector: 'sensor-detail',
     templateUrl: 'sensor-detail.tpl.html'
 })

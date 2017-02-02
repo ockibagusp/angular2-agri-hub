@@ -7,7 +7,7 @@ import { AuthenticateService } from '../core/authenticate/authenticate.service';
 import { IsResearcherComponent } from '../core/authenticate/authenticate.component';
 
 @Component({
-    moduleId: module.id,
+    moduleId: '../views/nodes/',
     selector: 'node-list',
     templateUrl: 'node.tpl.html'
 })

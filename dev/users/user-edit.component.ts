@@ -13,7 +13,7 @@ interface Errors {
 }
 
 @Component({
-    moduleId: module.id,
+    moduleId: '../views/users/',
     selector: 'user-edit',
     templateUrl: 'user-form.tpl.html'
 })
