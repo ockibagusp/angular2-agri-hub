@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { MainAppComponent } from './app.component';
 import { LoginComponent } from './core/login/login.component';
 import { LogoutComponent } from './core/authenticate/logout.component';
-import { PageNotFoundComponent } from './core/exceptions/page-not-found.component';
+import { PageNotFoundComponent } from './core/exceptions/exception.component';
 import { NodeComponent } from './nodes/node.component';
 import { NodeDetailComponent } from './nodes/node-detail.component';
 import { NodeNewComponent } from './nodes/node-new.component';

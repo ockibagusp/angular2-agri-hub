@@ -7,7 +7,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { NavbarComponent } from './navbar/navbar.component';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
-import { PageNotFoundComponent } from './exceptions/page-not-found.component';
+import { PageNotFoundComponent } from './exceptions/exception.component';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './authenticate/logout.component';
 
