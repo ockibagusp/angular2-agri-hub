@@ -33,7 +33,7 @@ export class NodeService {
             extraParam += "?role=global";
         }
 
-        return this.http.get(`${this.nodeUrl}/${extraParam}`)
+        return this.http.get(`${this.nodeUrl}/${extraParam}`, {headers: this.headers})
             .map(this.extractData)
             .catch(this.handleError);
     }
@@ -58,7 +58,7 @@ export class NodeService {
     }
 
     delete(url: string): Observable<void> {
-        return this.http.delete(url)
+        return this.http.delete(url, {headers: this.headers})
             .map(() => null)
             .catch(this.handleError);
     }
