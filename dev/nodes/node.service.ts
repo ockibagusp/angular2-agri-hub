@@ -11,7 +11,7 @@ import { CredentialsService } from '../core/authenticate/credentials.service';
 
 @Injectable()
 export class NodeService {
-    private nodeUrl = AgriHub.BASE_API_URL+'/nodes/';
+    private nodeUrl = AgriHub.BASE_API_URL+'/nodes';
     private headers = new Headers({
             'Content-Type': 'application/json',
             'Authorization': 'JWT ' + this.credentialsService.getToken()
