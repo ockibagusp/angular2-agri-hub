@@ -49,7 +49,7 @@ export class NodeService {
         var promise: Observable<Response>;
 
         if (url == this.nodeUrl ) {
-            promise = this.http.post(url, JSON.stringify(node), {headers: this.headers});
+            promise = this.http.post(`${url}/`, JSON.stringify(node), {headers: this.headers});
         } else {
             promise = this.http.put(url, JSON.stringify(node), {headers: this.headers});
         }
