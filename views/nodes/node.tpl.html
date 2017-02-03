@@ -13,6 +13,9 @@
                                     <a [routerLink]="['/nodes/view', node.id]">
                                         {{node.label}}
                                     </a>
+                                    <span class="label {{ node.is_public ? 'label-default' : 'label-primary' }}">
+                                        {{ node.is_public ? "public" : "private" }}
+                                    </span>
                                 </div>
                             </li>
                         </ul>
