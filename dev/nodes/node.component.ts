@@ -16,7 +16,7 @@ export class NodeComponent extends IsResearcherComponent implements OnInit {
     nodes: Node[];
     links: any[]; // breadcrumb
     activeId = "all";
-    
+
     constructor(
         private nodeService: NodeService,
         public router: Router,
