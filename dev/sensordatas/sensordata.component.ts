@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SensorDataService } from './sensordata.service';
 import { SensorData } from './sensordata.model';
 
-import { Router} from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AuthenticateService } from '../core/authenticate/authenticate.service';
 import { IsResearcherComponent } from '../core/authenticate/authenticate.component';
 
@@ -21,6 +21,7 @@ export class SensorDataComponent extends IsResearcherComponent implements OnInit
 
     constructor(
         private sensorDataService: SensorDataService,
+        private route: ActivatedRoute,
         public router: Router,
         public authenticateService: AuthenticateService
     ) {
@@ -49,6 +50,7 @@ export class SensorDataComponent extends IsResearcherComponent implements OnInit
     }
 
     pageChange(): void {
+        this.router.navigateByUrl(`sensordata?page=${this.page}`);
         this.getSensorData();
     }
 }

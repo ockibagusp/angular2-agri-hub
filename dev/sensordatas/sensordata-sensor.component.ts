@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 
 import { NodeService } from '../nodes/node.service';
@@ -9,7 +9,6 @@ import { Node } from '../nodes/node.model';
 import { Sensor } from '../sensors/sensor.model';
 import { SensorData } from './sensordata.model';
 
-import { Router} from '@angular/router';
 import { AuthenticateService } from '../core/authenticate/authenticate.service';
 import { IsResearcherComponent } from '../core/authenticate/authenticate.component';
 
@@ -90,5 +89,12 @@ export class SensorDataSensorComponent extends IsResearcherComponent implements 
                 },
                 error => console.log(error)
             );
+    }
+
+    pageChange(): void {
+        this.router.navigateByUrl(
+            `sensordata/node/${this.node.id}/sensor/${this.sensor.id}?page=${this.page}`
+        );
+        this.getSensorData();
     }
 }

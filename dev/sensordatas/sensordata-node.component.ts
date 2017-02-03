@@ -73,6 +73,7 @@ export class SensorDataNodeComponent extends IsResearcherComponent {
     }
 
     pageChange(): void {
+        this.router.navigateByUrl(`sensordata/node/${this.node.id}?page=${this.page}`);
         this.getSensorData();
     }
 }
