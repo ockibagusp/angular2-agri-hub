@@ -43,7 +43,7 @@ export class NodeComponent extends IsResearcherComponent implements OnInit {
     }
 
     tabChange($event: NgbTabChangeEvent): void {
-        console.log($event.nextId)
+        this.router.navigateByUrl(`/nodes?visibility=${$event.nextId}`);
         this.getNodes($event.nextId);
     }
 }
