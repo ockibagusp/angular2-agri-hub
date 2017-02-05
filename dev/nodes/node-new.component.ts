@@ -69,7 +69,8 @@ export class NodeNewComponent extends IsResearcherComponent {
             if(errorsParse.hasOwnProperty(index)) {
                 this.errors.push({
                     field: index,
-                    message: errorsParse[index][0]
+                    message: typeof errorsParse[index] === 'string' ? 
+                        errorsParse[index]: errorsParse[index][0]
                 })
             }
         }

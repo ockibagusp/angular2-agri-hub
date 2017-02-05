@@ -7,10 +7,6 @@ import { User } from './user.model';
 import { AuthenticateService } from '../core/authenticate/authenticate.service';
 import { IsAdminComponent } from '../core/authenticate/authenticate.component';
 
-interface Errors {
-    field: string,
-    message: string
-}
 
 @Component({
     moduleId: '../views/users/',
@@ -22,7 +18,7 @@ export class UserNewComponent extends IsAdminComponent implements OnInit {
     user: User;
     links: any[];
 
-    errors: Errors[];
+    errors: Array<{ field: string, message: string }>;
 
     constructor(
         private userService: UserService,
@@ -63,7 +59,8 @@ export class UserNewComponent extends IsAdminComponent implements OnInit {
             if(errorsParse.hasOwnProperty(index)) {
                 this.errors.push({
                     field: index,
-                    message: errorsParse[index][0]
+                    message: typeof errorsParse[index] === 'string' ? 
+                        errorsParse[index]: errorsParse[index][0]
                 })
             }
         }

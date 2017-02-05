@@ -20,6 +20,8 @@ export class SensorEditComponent extends IsResearcherComponent implements OnInit
     sensor: Sensor;
     links: any[];
 
+    errors: Array<{ field: string, message: string }>;
+
     constructor(
         private nodeService: NodeService,
         private sensorService: SensorService,
@@ -90,5 +92,19 @@ export class SensorEditComponent extends IsResearcherComponent implements OnInit
             { label: sensor.label, url: `/nodes/${this.parentNode.id}/sensors/view/${sensor.id}` },
             { label: "Edit", is_active: true }
         );
+    }
+
+    private extractErrors(err: any): void {
+        let errorsParse = JSON.parse(err._body);
+        this.errors = [];
+        for(let index in errorsParse) {
+            if(errorsParse.hasOwnProperty(index)) {
+                this.errors.push({
+                    field: index,
+                    message: typeof errorsParse[index] === 'string' ? 
+                        errorsParse[index]: errorsParse[index][0]
+                })
+            }
+        }
     }
 }

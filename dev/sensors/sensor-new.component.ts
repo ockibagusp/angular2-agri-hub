@@ -21,6 +21,8 @@ export class SensorNewComponent extends IsResearcherComponent implements OnInit 
     is_new: boolean = true;
     links: any[];
 
+    errors: Array<{ field: string, message: string }>;
+
     constructor(
         private nodeService: NodeService,
         private sensorService: SensorService,
@@ -65,5 +67,19 @@ export class SensorNewComponent extends IsResearcherComponent implements OnInit 
             { label: "Sensors", url: `/nodes/${node.id}/sensors` },
             { label: "New", is_active: true }
         ];
+    }
+
+    private extractErrors(err: any): void {
+        let errorsParse = JSON.parse(err._body);
+        this.errors = [];
+        for(let index in errorsParse) {
+            if(errorsParse.hasOwnProperty(index)) {
+                this.errors.push({
+                    field: index,
+                    message: typeof errorsParse[index] === 'string' ? 
+                        errorsParse[index]: errorsParse[index][0]
+                })
+            }
+        }
     }
 }
