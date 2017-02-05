@@ -68,8 +68,7 @@ export class SensorDataSensorComponent extends IsResearcherComponent implements 
                     this.links.push(
                         { label: this.node.label, url: `/nodes/view/${this.node.id}` },
                         { label: "Sensors", url: `/nodes/${this.node.id}/sensors` },
-                        { label: sensor.label, url: `/nodes/${this.node.id}/sensors/view/${sensor.id}` },
-                        { label: "Sensor Datas", is_active: true }
+                        { label: sensor.label, is_active: true }
                     );
                     this.getSensorData();
                 },

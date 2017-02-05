@@ -7,9 +7,9 @@
             <ul class="sensors">
                 <li *ngFor="let sensor of sensors">
                     <div>
-                        <a [routerLink]="['/nodes', parentNode.id, 'sensors', 'view', sensor.id]">
-                            {{sensor.label}}
-                        </a>
+                        <a [routerLink]="['/sensordata/node', parentNode.id, 'sensor', sensor.id]">
+							{{ sensor.label }}
+						</a>
                     </div>
                 </li>
             </ul>

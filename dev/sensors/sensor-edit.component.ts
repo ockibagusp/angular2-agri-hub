@@ -89,7 +89,7 @@ export class SensorEditComponent extends IsResearcherComponent implements OnInit
     private setUpSensor(sensor: Sensor) {
         this.sensor = sensor as Sensor;
         this.links.push(
-            { label: sensor.label, url: `/nodes/${this.parentNode.id}/sensors/view/${sensor.id}` },
+            { label: sensor.label, url: `/sensordata/node/${this.parentNode.id}/sensor/${sensor.id}` },
             { label: "Edit", is_active: true }
         );
     }

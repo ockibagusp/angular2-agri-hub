@@ -11,7 +11,6 @@ import { NodeNewComponent } from './nodes/node-new.component';
 import { NodeEditComponent } from './nodes/node-edit.component';
 
 import { SensorComponent } from './sensors/sensor.component';
-import { SensorDetailComponent } from './sensors/sensor-detail.component';
 import { SensorEditComponent } from './sensors/sensor-edit.component';
 import { SensorNewComponent } from './sensors/sensor-new.component';
 
@@ -36,7 +35,6 @@ const routes: Routes = [
     // sensor
     { path: 'nodes/:id/sensors', component: SensorComponent },
     { path: 'nodes/:nodeid/sensors/new', component: SensorNewComponent },
-    { path: 'nodes/:nodeid/sensors/view/:sensorid', component: SensorDetailComponent },
     { path: 'nodes/:nodeid/sensors/edit/:sensorid', component: SensorEditComponent },
     // sensor data
     { path: 'sensordata', component: SensorDataComponent },
