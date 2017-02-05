@@ -2,6 +2,9 @@
 <div class="container">
     <breadcrumb [title]="is_new ? 'New Node' : 'Edit Node'" [links]="links"></breadcrumb>
     <div class="row-fluid">
+        <ngb-alert *ngIf="node.is_public" [dismissible]="false">
+            <strong>Important!</strong> Your sensor datas will be visible by another.
+        </ngb-alert>
         <div class="col-md-6">
             <ul *ngFor="let error of errors">
                 <li style="color: red">{{ error.field}} -> {{ error.message }}</li>
@@ -14,6 +17,11 @@
                 <div class="form-group">
                     <label class="control-label" for="secretkey">Secretkey:</label>
                     <input [(ngModel)]="node.secretkey" class="form-control" name="secretkey" type="text" required>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="is_public">Public node:</label>
+                    <input type="checkbox" [(ngModel)]="node.is_public" name="is_public"> 
+                        {{ node.is_public ? "Yes" : "No" }}
                 </div>
                 <div class="form-group">
                     <label class="control-label" for="subsperday">Subsperday:</label>

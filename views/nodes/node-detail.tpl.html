@@ -7,6 +7,10 @@
             <table class="table table-striped">
                 <tbody>
                     <tr>
+                        <th>Public node:</th>
+                        <td>{{ 1 == node.is_public ? "yes" : "no" }}</td>
+                    </tr>
+                    <tr>
                         <th>Subscription per day:</th>
                         <td>{{ -1 == node.subsperday ? "unlimited" : node.subsperday }}</td>
                     </tr>

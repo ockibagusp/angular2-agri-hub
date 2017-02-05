@@ -54,6 +54,7 @@ export class NodeNewComponent extends IsResearcherComponent {
     }
 
     save(): void {
+        this.node.is_public = this.node.is_public ? 1 : 0; 
         this.nodeService.save(this.node)
             .subscribe(
                 node => this.router.navigate(['/nodes']),

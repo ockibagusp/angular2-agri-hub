@@ -3,6 +3,7 @@ export class Node {
     url: string;
     user: string;
     label: string;
+    is_public: number;
     secretkey: string;
     subsperday: number;
     subsperdayremain: number;

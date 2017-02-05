@@ -68,6 +68,7 @@ export class NodeEditComponent extends IsResearcherComponent {
     }
 
     save(): void {
+        this.node.is_public = this.node.is_public ? 1 : 0;
         this.nodeService.save(this.node)
             .subscribe(
                 node => this.router.navigate(['/nodes/view', node.id]),
@@ -80,7 +81,7 @@ export class NodeEditComponent extends IsResearcherComponent {
             this.nodeService.delete(this.node.url)
                 .subscribe(
                     () => this.router.navigate(['/nodes/']),
-                    error => console.log(error)
+                    error => this.extractErrors(error)
                 );
         }
     }
