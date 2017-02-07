@@ -53,7 +53,7 @@ export class UserEditComponent extends IsAdminComponent implements OnInit {
             this.userService.delete(this.user.url)
                 .subscribe(
                     () => this.router.navigate(['/users/']),
-                    error => console.log(error)
+                    error => this.extractErrors(error)
                 );
         }
     }
