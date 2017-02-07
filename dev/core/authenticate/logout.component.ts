@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CredentialsService } from './credentials.service';
+import { AgriHub } from '../../global/agrihub';
 
 @Component({
     selector: 'logout',
@@ -14,6 +15,6 @@ export class LogoutComponent implements OnInit {
 
     ngOnInit() {
         this.credentialsService.deleteAll();
-        this.router.navigate(['/login']);
+        window.location.href = AgriHub.BASE_URL + 'login';
     }
 }
