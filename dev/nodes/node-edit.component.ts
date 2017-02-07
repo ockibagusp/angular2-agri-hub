@@ -4,13 +4,9 @@ import { NodeService } from './node.service';
 import { Node } from './node.model';
 import 'rxjs/add/operator/switchMap';
 
+import { CredentialsService } from '../core/authenticate/credentials.service';
 import { AuthenticateService } from '../core/authenticate/authenticate.service';
 import { IsResearcherComponent } from '../core/authenticate/authenticate.component';
-
-interface Errors {
-    field: string,
-    message: string
-}
 
 @Component({
     moduleId: '../views/nodes/',
@@ -23,11 +19,12 @@ export class NodeEditComponent extends IsResearcherComponent {
     unlimited: boolean;
     _initial_subsperday: number;
 
-    errors: Errors[];
+    errors: Array<{ field: string, message: string}>;
 
     constructor(
         private nodeService: NodeService,
         private route: ActivatedRoute,
+        private credentialsService: CredentialsService,
         public router: Router,
         public authenticateService: AuthenticateService
     ) {
@@ -47,6 +44,10 @@ export class NodeEditComponent extends IsResearcherComponent {
     }
 
     private setUpNode(node: Node): void {
+        // raise 403 when node is not owned by this auth user
+        if (node.user != this.credentialsService.getUser().username) {
+            this.router.navigate(['/403']);
+        }
         this.node = node;
         this.unlimited = (-1 == node.subsperday);
         this._initial_subsperday = node.subsperday;

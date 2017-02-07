@@ -36,7 +36,7 @@
                     </tr>
                 </tbody>
             </table>
-            <form (ngSubmit)="edit()" class="form-horizontal">
+            <form *ngIf="is_mine" (ngSubmit)="edit()" class="form-horizontal">
                 <div class="form-actions">
                     <button class="btn btn-primary">Edit</button>
                 </div>
