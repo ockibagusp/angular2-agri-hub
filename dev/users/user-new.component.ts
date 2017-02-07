@@ -45,6 +45,7 @@ export class UserNewComponent extends IsAdminComponent implements OnInit {
     }
 
     save() {
+        this.user.is_admin = this.user.is_admin ? 1 : 0; 
         this.userService.save(this.user)
             .subscribe(
                 () => this.router.navigate(['/users']),
