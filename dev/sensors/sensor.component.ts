@@ -6,6 +6,7 @@ import { SensorService } from './sensor.service';
 import { Node } from '../nodes/node.model';
 import { Sensor } from './sensor.model';
 
+import { CredentialsService } from '../core/authenticate/credentials.service';
 import { AuthenticateService } from '../core/authenticate/authenticate.service';
 import { IsResearcherComponent } from '../core/authenticate/authenticate.component';
 
@@ -18,11 +19,13 @@ export class SensorComponent extends IsResearcherComponent implements OnInit {
     parentNode: Node;
     sensors: Sensor[];
     links: any[]; // breadcrumb
+    is_mine: boolean; // 'edit' button visibility
 
     constructor(
         private nodeService: NodeService,
         private sensorService: SensorService, 
         private route: ActivatedRoute,
+        private credentialsService: CredentialsService,
         public router: Router,
         public authenticateService: AuthenticateService
     ) {
@@ -41,6 +44,9 @@ export class SensorComponent extends IsResearcherComponent implements OnInit {
             .subscribe(
                 node => {
                     this.parentNode = node as Node;
+                    // show 'new' button only when node is owned by this auth user
+                    this.is_mine = (node.user == this.credentialsService.getUser().username) ?
+                        true: false;
                     this.links = [
                         { label: "Home", url: "/" },
                         { label: "Nodes", url: "/nodes/" },

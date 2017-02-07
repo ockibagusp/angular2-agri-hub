@@ -7,6 +7,7 @@ import { SensorService } from './sensor.service';
 import { Node } from '../nodes/node.model';
 import { Sensor } from './sensor.model';
 
+import { CredentialsService } from '../core/authenticate/credentials.service';
 import { AuthenticateService } from '../core/authenticate/authenticate.service';
 import { IsResearcherComponent } from '../core/authenticate/authenticate.component';
 
@@ -27,6 +28,7 @@ export class SensorNewComponent extends IsResearcherComponent implements OnInit 
         private nodeService: NodeService,
         private sensorService: SensorService,
         private route: ActivatedRoute,
+        private credentialsService: CredentialsService,
         public router: Router,
         public authenticateService: AuthenticateService 
     ){
@@ -60,6 +62,10 @@ export class SensorNewComponent extends IsResearcherComponent implements OnInit 
 
     private setUpNode(node: Node): void {
         this.parentNode = node;
+        // raise 403 when node is not owned by this auth user
+        if (node.user != this.credentialsService.getUser().username) {
+            this.router.navigate(['/403']);
+        }
         this.links = [
             { label: "Home", url: "/" },
             { label: "Nodes", url: "/nodes/" },

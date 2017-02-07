@@ -14,7 +14,7 @@
                 </li>
             </ul>
             <strong *ngIf="sensors?.length == 0">No Data</strong>
-            <div class="alert alert-info" role="alert">
+            <div *ngIf="is_mine" class="alert alert-info" role="alert">
                 New sensor: <a [routerLink]="['/nodes', parentNode.id, 'sensors', 'new']" 
                 class="btn btn-primary">Link</a>
             </div>
