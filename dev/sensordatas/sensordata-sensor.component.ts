@@ -9,6 +9,7 @@ import { Node } from '../nodes/node.model';
 import { Sensor } from '../sensors/sensor.model';
 import { SensorData } from './sensordata.model';
 
+import { CredentialsService } from '../core/authenticate/credentials.service';
 import { AuthenticateService } from '../core/authenticate/authenticate.service';
 import { IsResearcherComponent } from '../core/authenticate/authenticate.component';
 
@@ -26,12 +27,14 @@ export class SensorDataSensorComponent extends IsResearcherComponent implements 
     page = 1;
     maxSize = 10;
     collectionSize: number;
+    is_mine: boolean; // 'edit' button visibility
 
     constructor(
         private nodeService: NodeService,
         private sensorService: SensorService,
         private sensorDataService: SensorDataService,
         private route: ActivatedRoute,
+        private credentialsService: CredentialsService,
         public router: Router,
         public authenticateService: AuthenticateService
     ) {
@@ -53,6 +56,9 @@ export class SensorDataSensorComponent extends IsResearcherComponent implements 
             .subscribe(
                 node => {
                     this.node = node as Node;
+                    // show 'edit' button only when node is owned by this auth user
+                    this.is_mine = (node.user == this.credentialsService.getUser().username) ?
+                        true: false;
                     this.getSensor();
                 },
                 error => console.log(error)
