@@ -22,8 +22,16 @@ export class UserService {
         private credentialsService: CredentialsService
     ) {}
 
-    getUsers(): Observable<any> {
-        return this.http.get(`${this.userUrl}/`, {headers: this.headers})
+    getUsers(type: string): Observable<any> {
+        let extraParam = "";
+
+        if ("admin" == type) {
+            extraParam += "?type=admin";
+        } else if ("researcher" == type) {
+            extraParam += "?type=researcher";
+        }
+
+        return this.http.get(`${this.userUrl}/${extraParam}`, {headers: this.headers})
             .map(this.extractData)
             .catch(this.handleError);
     }

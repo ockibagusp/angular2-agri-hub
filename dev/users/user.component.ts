@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
+import { NgbTabChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 import { UserService } from './user.service';
 import { User } from './user.model';
 
@@ -30,14 +30,19 @@ export class UserComponent extends IsAdminComponent implements OnInit {
             { label: "Home", url: "/" },
             { label: "Users", url: "/users" , is_active: true}
         ]
-        this.getUsers();
+        this.getUsers("admin");
     }
 
-    getUsers() {
-        this.userService.getUsers()
+    getUsers(type="") {
+        this.userService.getUsers(type)
             .subscribe(
                 users => this.users = users.results as User[],
                 error => console.log(error)
             );
+    }
+
+    tabChange($event: NgbTabChangeEvent): void {
+        this.router.navigateByUrl(`/users?type=${$event.nextId}`);
+        this.getUsers($event.nextId);
     }
 }
