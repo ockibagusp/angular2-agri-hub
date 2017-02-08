@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { MainAppComponent } from './app.component';
 import { LoginComponent } from './core/login/login.component';
 import { LogoutComponent } from './core/authenticate/logout.component';
+import { RegisterComponent } from './core/register/register.component';
 import { PageNotFoundComponent, ForbiddenComponent } from './core/exceptions/exception.component';
 import { NodeComponent } from './nodes/node.component';
 import { NodeDetailComponent } from './nodes/node-detail.component';
@@ -27,6 +28,7 @@ const routes: Routes = [
     { path: '', component: MainAppComponent, pathMatch: 'full' },
     { path: 'login', component: LoginComponent },
     { path: 'logout', component: LogoutComponent },
+    { path: 'register', component: RegisterComponent },
     // node
     { path: 'nodes', component: NodeComponent },
     { path: 'nodes/new', component: NodeNewComponent },
