@@ -2,10 +2,12 @@
 <div class="container">
     <breadcrumb [title]="is_new ? 'New User' : 'Edit User'" [links]="links"></breadcrumb>
     <div class="row-fluid">
+         <p *ngFor="let error of errors">
+            <ngb-alert [type]="'danger'" (close)="closeAlert(alert)">
+                <strong>{{ error.field}}:</strong> {{ error.message }}
+            </ngb-alert>
+        </p>
         <div class="col-md-6">
-            <ul *ngFor="let error of errors">
-                <li style="color: red">{{ error.field}} -> {{ error.message }}</li>
-            </ul>
             <form name="userForm" (ngSubmit)="save()" class="form-horizontal">
                 <div class="form-group">
                     <label class="control-username" for="username">Username:</label>

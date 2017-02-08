@@ -100,4 +100,9 @@ export class NodeEditComponent extends IsResearcherComponent {
             }
         }
     }
+
+    public closeAlert(alert: any) {
+        const index: number = this.errors.indexOf(alert);
+        this.errors.splice(index, 1);
+    }
 }

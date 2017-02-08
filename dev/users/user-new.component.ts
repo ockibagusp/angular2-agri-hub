@@ -66,4 +66,9 @@ export class UserNewComponent extends IsAdminComponent implements OnInit {
             }
         }
     }
+
+    public closeAlert(alert: any) {
+        const index: number = this.errors.indexOf(alert);
+        this.errors.splice(index, 1);
+    }
 }

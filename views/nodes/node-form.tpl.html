@@ -2,13 +2,15 @@
 <div class="container">
     <breadcrumb [title]="is_new ? 'New Node' : 'Edit Node'" [links]="links"></breadcrumb>
     <div class="row-fluid">
+        <p *ngFor="let error of errors">
+            <ngb-alert [type]="'danger'" (close)="closeAlert(alert)">
+                <strong>{{ error.field}}:</strong> {{ error.message }}
+            </ngb-alert>
+        </p>
         <ngb-alert *ngIf="node.is_public" [dismissible]="false">
             <strong>Important!</strong> Your sensor datas will be visible by another.
         </ngb-alert>
         <div class="col-md-6">
-            <ul *ngFor="let error of errors">
-                <li style="color: red">{{ error.field}} -> {{ error.message }}</li>
-            </ul>
             <form name="nodeForm" (ngSubmit)="save()" class="form-horizontal">
                 <div class="form-group">
                     <label class="control-label" for="label">Label:</label>

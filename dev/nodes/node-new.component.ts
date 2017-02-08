@@ -75,4 +75,9 @@ export class NodeNewComponent extends IsResearcherComponent {
             }
         }
     }
+
+    public closeAlert(alert: any) {
+        const index: number = this.errors.indexOf(alert);
+        this.errors.splice(index, 1);
+    }
 }

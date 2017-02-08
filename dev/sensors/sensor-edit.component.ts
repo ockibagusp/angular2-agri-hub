@@ -64,7 +64,7 @@ export class SensorEditComponent extends IsResearcherComponent implements OnInit
         this.sensorService.save(this.parentNode, this.sensor)
             .subscribe(
                 sensor => this.router.navigate(['/nodes/', this.parentNode.id, 'sensors']),
-                error => console.log(error)
+                error => this.extractErrors(error)
             );
     }
 
@@ -73,7 +73,7 @@ export class SensorEditComponent extends IsResearcherComponent implements OnInit
             this.sensorService.delete(this.sensor.url)
                 .subscribe(
                     () => this.router.navigate(['/nodes/', this.parentNode.id, 'sensors']),
-                    error => console.log(error)
+                    error => this.extractErrors(error)
                 );
         }
     }
@@ -112,5 +112,10 @@ export class SensorEditComponent extends IsResearcherComponent implements OnInit
                 })
             }
         }
+    }
+
+    public closeAlert(alert: any) {
+        const index: number = this.errors.indexOf(alert);
+        this.errors.splice(index, 1);
     }
 }
