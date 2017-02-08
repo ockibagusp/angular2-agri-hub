@@ -1,5 +1,5 @@
 <div class="container">
-    <form class="form-signin" name="loginForm">
+    <form (ngSubmit)="login()" class="form-signin" name="loginForm">
         <h2 class="form-signin-heading">Please sign in</h2>
         <div class="alert alert-danger" role="alert" 
             [style.display]="errors ? 'inherit' : 'none'">
@@ -16,7 +16,7 @@
             <input type="checkbox" value="remember-me"> Remember me
         </label>
         </div>
-        <button class="btn btn-lg btn-primary btn-block" (click)="login()">Sign in</button>
+        <button class="btn btn-lg btn-primary btn-block">Sign in</button>
         <a [routerLink]="['/register']" class="btn btn-lg btn-success btn-block">
             Register
         </a>

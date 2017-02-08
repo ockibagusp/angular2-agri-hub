@@ -1,5 +1,5 @@
 <div class="container">
-    <form class="form-signin" name="registerForm">
+    <form (ngSubmit)="register()" class="form-signin" name="registerForm">
         <h2 class="form-signin-heading">Register Form</h2>
         <p *ngFor="let error of errors">
             <ngb-alert [type]="'danger'" (close)="closeAlert(alert)">
@@ -21,8 +21,8 @@
         <label class="sr-only">Last name</label>
         <input type="text" [(ngModel)]="user.last_name" class="form-control" 
             placeholder="Last name" name="last_name" required>
-        <button class="btn btn-lg btn-success btn-block" style="margin-top: 10px"
-            (click)="register()">Register
+        <button class="btn btn-lg btn-success btn-block" style="margin-top: 10px">
+            Register
         </button>
         <a [routerLink]="['/login']" class="btn btn-lg btn-primary btn-block">
             Login
