@@ -1,6 +1,6 @@
 <nav-bar></nav-bar>
 <div *ngIf="node" class="container">
-    <breadcrumb [links]=links></breadcrumb>
+    <breadcrumb [title]="'Node Detail'" [links]=links></breadcrumb>
     <div class="row-fluid">
         <h3>Node: {{ node.label }}</h3>
         <div class="col-md-4">
