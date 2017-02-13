@@ -34,7 +34,7 @@ export class IsAdminComponent implements OnInit {
         if(!this.authenticateService.isAuth()) {
             window.location.href = AgriHub.BASE_URL + 'login';
         } else if(!this.authenticateService.isAdmin()) {
-            this.router.navigate(['/403']);
+            this.router.navigateByUrl('/403', { skipLocationChange: true });
         }
     }
 }
@@ -53,7 +53,7 @@ export class IsResearcherComponent implements OnInit {
         if(!this.authenticateService.isAuth()) {
             window.location.href = AgriHub.BASE_URL + 'login';
         } else if(!this.authenticateService.isResearcher()) {
-            this.router.navigate(['/403']);
+            this.router.navigateByUrl('/403', { skipLocationChange: true });
         }
     }
 }

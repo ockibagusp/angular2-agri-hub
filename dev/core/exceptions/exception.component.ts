@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Location } from '@angular/common';
 
 @Component({
   moduleId: '../views/core/exceptions/',
@@ -8,6 +9,12 @@ import { Component } from '@angular/core';
 export class PageNotFoundComponent {
     status = '404 Not Found';
     detail = 'Requested page not found';
+
+    constructor(private location: Location) {}
+
+    back() {
+        this.location.back();
+    }
 }
 
 @Component({
@@ -18,4 +25,10 @@ export class PageNotFoundComponent {
 export class ForbiddenComponent {
     status = '403 Forbidden';
     detail = 'You do not have permission to perform this action';
+
+    constructor(private location: Location) {}
+
+    back() {
+        this.location.back();
+    }
 }

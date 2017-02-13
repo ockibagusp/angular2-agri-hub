@@ -8,6 +8,7 @@
                     Sorry, an error has occured, {{ detail }}!
                 </div>
                 <div class="error-actions">
+                    <button (click)="back()" class="btn btn-primary btn-lg">Take Me Back</button>
                     <a [routerLink]="['/']" class="btn btn-primary btn-lg">
                         Take Me Home
                     </a>
