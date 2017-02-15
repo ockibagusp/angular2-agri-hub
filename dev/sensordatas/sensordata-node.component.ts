@@ -83,12 +83,14 @@ export class SensorDataNodeComponent extends IsResearcherComponent {
     }
 
     filter(): void {
-        this.getSensorData();
+        this.page = 1;
+        this.pageChange();
     }
 
     clearFilter() {
+        this.page = 1;
         this.date_start = "";
         this.date_end = "";
-        this.getSensorData();
+        this.pageChange();
     }
 }
