@@ -19,6 +19,9 @@ export class SensorDataComponent extends IsResearcherComponent implements OnInit
     maxSize = 10;
     collectionSize: number;
 
+    date_start: string;
+    date_end: string;
+
     constructor(
         private sensorDataService: SensorDataService,
         private route: ActivatedRoute,
@@ -39,7 +42,7 @@ export class SensorDataComponent extends IsResearcherComponent implements OnInit
     }
 
     getSensorData(): void {
-        this.sensorDataService.getSensorDataByUser(this.page)
+        this.sensorDataService.getSensorDataByUser(this.page, this.date_start, this.date_end)
             .subscribe(
                 sensordatas => {
                     this.collectionSize = sensordatas.count;
@@ -51,6 +54,16 @@ export class SensorDataComponent extends IsResearcherComponent implements OnInit
 
     pageChange(): void {
         this.router.navigateByUrl(`sensordata?page=${this.page}`);
+        this.getSensorData();
+    }
+
+    filter(): void {
+        this.getSensorData();
+    }
+
+    clearFilter() {
+        this.date_start = "";
+        this.date_end = "";
         this.getSensorData();
     }
 }

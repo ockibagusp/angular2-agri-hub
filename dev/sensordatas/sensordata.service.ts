@@ -22,9 +22,11 @@ export class SensorDataService {
         private credentialsService: CredentialsService
     ){}
 
-    getSensorDataByUser(page:number=1): Observable<any> {
+    getSensorDataByUser(page:number=1, date_start="", date_end=""): Observable<any> {
         var user = this.credentialsService.getUser().username;
-        return this.http.get(`${this.nodeUrl}/user/${user}/?page=${page}`, {headers: this.headers})
+        var filter = this.getFilterQuery(date_start, date_end);
+
+        return this.http.get(`${this.nodeUrl}/user/${user}/?page=${page}${filter}`, {headers: this.headers})
             .map(this.extractData)
             .catch(this.handleError);
     }
@@ -40,6 +42,18 @@ export class SensorDataService {
             {headers: this.headers})
             .map(this.extractData)
             .catch(this.handleError);
+    }
+
+    private getFilterQuery(date_start="", date_end=""): string {
+        var filter = "";
+        if (date_start) {
+            filter += `&&start=${date_start}`
+        }
+
+        if (date_end) {
+            filter += `&&end=${date_end}`
+        }
+        return filter;
     }
 
     private extractData(res: Response) {
