@@ -28,8 +28,8 @@
 				<div class="form-group">
 					<label for="action">Action</label>
 					<div>
-						<button (click)="filter()" class="btn btn-primary">Filter</button>
-						<button (click)="clearFilter()" class="btn btn-success">Clear</button>
+						<button [disabled]="!date_start && !date_end" (click)="filter()" class="btn btn-primary">Filter</button>
+						<button [disabled]="!date_start && !date_end" (click)="clearFilter()" class="btn btn-success">Clear</button>
 					</div>
 				</div>
 			</form>
