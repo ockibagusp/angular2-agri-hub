@@ -29,6 +29,9 @@ export class SensorDataSensorComponent extends IsResearcherComponent implements 
     collectionSize: number;
     is_mine: boolean; // 'edit' button visibility
 
+    date_start: string;
+    date_end: string;
+
     constructor(
         private nodeService: NodeService,
         private sensorService: SensorService,
@@ -85,7 +88,7 @@ export class SensorDataSensorComponent extends IsResearcherComponent implements 
     getSensorData(): void {
         this.route.params
             .switchMap((params: Params) => this.sensorDataService.getSensorDataBySensor(
-                this.page, params['nodeid'], params['sensorid']
+                this.page, params['nodeid'], params['sensorid'], this.date_start, this.date_end
             ))
             .subscribe(
                 sensordatas => {
@@ -100,6 +103,16 @@ export class SensorDataSensorComponent extends IsResearcherComponent implements 
         this.router.navigateByUrl(
             `sensordata/node/${this.node.id}/sensor/${this.sensor.id}?page=${this.page}`
         );
+        this.getSensorData();
+    }
+
+    filter(): void {
+        this.getSensorData();
+    }
+
+    clearFilter() {
+        this.date_start = "";
+        this.date_end = "";
         this.getSensorData();
     }
 }

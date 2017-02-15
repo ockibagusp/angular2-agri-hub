@@ -38,8 +38,10 @@ export class SensorDataService {
             .catch(this.handleError);
     }
 
-    getSensorDataBySensor(page:number=1, nodeid:string, sensorid:string): Observable<any> {
-        return this.http.get(`${this.nodeUrl}/node/${nodeid}/sensor/${sensorid}/?page=${page}`, 
+    getSensorDataBySensor(page:number=1, nodeid:string, sensorid:string, 
+        date_start="", date_end=""): Observable<any> {
+        var filter = this.getFilterQuery(date_start, date_end);
+        return this.http.get(`${this.nodeUrl}/node/${nodeid}/sensor/${sensorid}/?page=${page}${filter}`, 
             {headers: this.headers})
             .map(this.extractData)
             .catch(this.handleError);
