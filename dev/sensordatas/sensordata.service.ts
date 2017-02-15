@@ -31,8 +31,9 @@ export class SensorDataService {
             .catch(this.handleError);
     }
 
-    getSensorDataByNode(page:number=1, nodeid:string): Observable<any> {
-        return this.http.get(`${this.nodeUrl}/node/${nodeid}/?page=${page}`, {headers: this.headers})
+    getSensorDataByNode(page:number=1, nodeid:string, date_start="", date_end=""): Observable<any> {
+        var filter = this.getFilterQuery(date_start, date_end);
+        return this.http.get(`${this.nodeUrl}/node/${nodeid}/?page=${page}${filter}`, {headers: this.headers})
             .map(this.extractData)
             .catch(this.handleError);
     }

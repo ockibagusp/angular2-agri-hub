@@ -24,6 +24,9 @@ export class SensorDataNodeComponent extends IsResearcherComponent {
     maxSize = 10;
     collectionSize: number;
 
+    date_start: string;
+    date_end: string;
+
     constructor(
         private nodeService: NodeService,
         private sensorDataService: SensorDataService,
@@ -62,7 +65,9 @@ export class SensorDataNodeComponent extends IsResearcherComponent {
 
     getSensorData(): void {
         this.route.params
-            .switchMap((params: Params) => this.sensorDataService.getSensorDataByNode(this.page, params['nodeid']))
+            .switchMap((params: Params) => this.sensorDataService.getSensorDataByNode(
+                this.page, params['nodeid'], this.date_start, this.date_end
+            ))
             .subscribe(
                 sensordatas => {
                     this.collectionSize = sensordatas.count;
@@ -74,6 +79,16 @@ export class SensorDataNodeComponent extends IsResearcherComponent {
 
     pageChange(): void {
         this.router.navigateByUrl(`sensordata/node/${this.node.id}?page=${this.page}`);
+        this.getSensorData();
+    }
+
+    filter(): void {
+        this.getSensorData();
+    }
+
+    clearFilter() {
+        this.date_start = "";
+        this.date_end = "";
         this.getSensorData();
     }
 }
