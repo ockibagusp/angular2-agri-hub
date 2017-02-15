@@ -23,7 +23,7 @@ export class SensorDataService {
     ){}
 
     getSensorDataByUser(page:number=1): Observable<any> {
-        var user = 'basukicahya'; // => uses cookies soon
+        var user = this.credentialsService.getUser().username;
         return this.http.get(`${this.nodeUrl}/user/${user}/?page=${page}`, {headers: this.headers})
             .map(this.extractData)
             .catch(this.handleError);
