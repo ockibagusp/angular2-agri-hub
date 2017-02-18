@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { RegisterService } from './register.service';
 import { User } from '../../users/user.model';
+import { AuthenticateService } from '../authenticate/authenticate.service';
 
 @Component({
     moduleId: '../views/core/register/',
@@ -15,10 +16,15 @@ export class RegisterComponent implements OnInit {
 
     constructor(
         private router: Router, 
-        private registerService: RegisterService
+        private registerService: RegisterService,
+        private authenticateService: AuthenticateService
     ) {}
 
     ngOnInit() {
+        if (this.authenticateService.isAuth()) {
+            this.router.navigate(['/']);
+        }
+
         this.user = new User;
         this.user.username = 'milea';
         this.user.email = 'milea@example.com';
