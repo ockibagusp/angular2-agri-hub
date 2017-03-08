@@ -82,7 +82,7 @@ export class SensorEditComponent extends IsResearcherComponent implements OnInit
         this.parentNode = node;
         // raise 403 when node is not owned by this auth user
         if (node.user != this.credentialsService.getUser().username) {
-            this.router.navigate(['/403']);
+            this.router.navigateByUrl('/403', { skipLocationChange: true });
         }
         this.links = [
             { label: "Home", url: "/" },
