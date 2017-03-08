@@ -46,7 +46,7 @@ export class NodeEditComponent extends IsResearcherComponent {
     private setUpNode(node: Node): void {
         // raise 403 when node is not owned by this auth user
         if (node.user != this.credentialsService.getUser().username) {
-            this.router.navigate(['/403']);
+            this.router.navigateByUrl('/403', { skipLocationChange: true });
         }
         this.node = node;
         this.unlimited = (-1 == node.subsperday);
