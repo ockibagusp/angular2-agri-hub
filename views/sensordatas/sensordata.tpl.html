@@ -47,7 +47,7 @@
 						<td>{{ sensordata.node }}</td>
 						<td>{{ sensordata.sensorlabel }}</td>
 						<td>{{ sensordata.data }}</td>
-						<td>{{ sensordata.timestamp | date: 'medium' }}</td>
+						<td>{{ sensordata.timestamp | localdate }}</td>
 					</tr>
 				</tbody>
 			</table>
