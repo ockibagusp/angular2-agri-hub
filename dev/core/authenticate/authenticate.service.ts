@@ -40,9 +40,9 @@ export class BaseCanActivate implements CanActivate {
 
     canActivate() {
         if (this.authenticateService.isAuth()) {
-            this.router.navigate(['/']);
             return true;
         }
+        this.router.navigate(['/login']);
         return false;
     }
 }

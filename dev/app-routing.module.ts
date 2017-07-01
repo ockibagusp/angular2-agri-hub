@@ -34,39 +34,80 @@ const routes: Routes = [
     { path: 'logout', component: LogoutComponent },
     { path: 'register', component: RegisterComponent },
     // node
-    { path: 'nodes', component: NodeComponent, canActivate: [CanActivateResearcher] },
-    { path: 'nodes/new', component: NodeNewComponent, canActivate: [CanActivateResearcher] },
-    { path: 'nodes/view/:id', component: NodeDetailComponent, canActivate: [CanActivateResearcher] },
-    { path: 'nodes/edit/:id', component: NodeEditComponent, canActivate: [CanActivateResearcher] },
+    { 
+        path: 'nodes', 
+        component: NodeComponent, 
+        canActivate: [BaseCanActivate, CanActivateResearcher] 
+    },
+    { 
+        path: 'nodes/new', 
+        component: NodeNewComponent, 
+        canActivate: [BaseCanActivate, CanActivateResearcher] 
+    },
+    { 
+        path: 'nodes/view/:id', 
+        component: NodeDetailComponent, 
+        canActivate: [BaseCanActivate, CanActivateResearcher] 
+    },
+    { 
+        path: 'nodes/edit/:id', 
+        component: NodeEditComponent, 
+        canActivate: [BaseCanActivate, CanActivateResearcher] 
+    },
     // sensor
-    { path: 'nodes/:id/sensors', component: SensorComponent, canActivate: [CanActivateResearcher] },
+    { 
+        path: 'nodes/:id/sensors', 
+        component: SensorComponent, 
+        canActivate: [BaseCanActivate, CanActivateResearcher] 
+    },
     { 
         path: 'nodes/:nodeid/sensors/new', 
         component: SensorNewComponent, 
-        canActivate: [CanActivateResearcher] 
+        canActivate: [BaseCanActivate, CanActivateResearcher] 
     },
     { 
         path: 'nodes/:nodeid/sensors/edit/:sensorid', 
         component: SensorEditComponent, 
-        canActivate: [CanActivateResearcher] 
+        canActivate: [BaseCanActivate, CanActivateResearcher] 
     },
     // sensor data
-    { path: 'sensordata', component: SensorDataComponent, canActivate: [CanActivateResearcher] },
+    { 
+        path: 'sensordata', 
+        component: SensorDataComponent, 
+        canActivate: [BaseCanActivate, CanActivateResearcher] 
+    },
     { 
         path: 'sensordata/node/:nodeid', 
         component: SensorDataNodeComponent, 
-        canActivate: [CanActivateResearcher] 
+        canActivate: [BaseCanActivate, CanActivateResearcher] 
     },
     { 
         path: 'sensordata/node/:nodeid/sensor/:sensorid', 
         component: SensorDataSensorComponent, 
-        canActivate: [CanActivateResearcher] 
+        
+        canActivate: [BaseCanActivate, CanActivateResearcher] 
     },
     // user
-    { path: 'users', component: UserComponent, canActivate: [CanActivateAdmin] },
-    { path: 'users/new', component: UserNewComponent, canActivate: [CanActivateAdmin] },
-    { path: 'users/view/:userid', component: UserDetailComponent, canActivate: [CanActivateAdmin] },
-    { path: 'users/edit/:userid', component: UserEditComponent, canActivate: [CanActivateAdmin] },
+    { 
+        path: 'users', 
+        component: UserComponent, 
+        canActivate: [BaseCanActivate, CanActivateAdmin] 
+    },
+    { 
+        path: 'users/new', 
+        component: UserNewComponent, 
+        canActivate: [BaseCanActivate, CanActivateAdmin] 
+    },
+    { 
+        path: 'users/view/:userid', 
+        component: UserDetailComponent, 
+        canActivate: [BaseCanActivate, CanActivateAdmin] 
+    },
+    { 
+        path: 'users/edit/:userid', 
+        component: UserEditComponent, 
+        canActivate: [BaseCanActivate, CanActivateAdmin] 
+    },
     // otherwise
     { path: '403', component: ForbiddenComponent },
     { path: '**', component: PageNotFoundComponent }
