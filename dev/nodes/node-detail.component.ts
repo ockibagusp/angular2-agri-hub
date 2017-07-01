@@ -3,17 +3,14 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { NodeService } from './node.service';
 import { Node } from './node.model';
 import 'rxjs/add/operator/switchMap';
-
 import { CredentialsService } from '../core/authenticate/credentials.service';
-import { AuthenticateService } from '../core/authenticate/authenticate.service';
-import { IsResearcherComponent } from '../core/authenticate/authenticate.component';
 
 @Component({
     moduleId: '../views/nodes/',
     selector: 'node-detail',
     templateUrl: 'node-detail.tpl.html'
 })
-export class NodeDetailComponent extends IsResearcherComponent implements OnInit {
+export class NodeDetailComponent implements OnInit {
     node: Node;
     links: any[]; // breadcrumb
     is_mine: boolean; // 'edit' button visibility
@@ -22,12 +19,8 @@ export class NodeDetailComponent extends IsResearcherComponent implements OnInit
         private nodeService: NodeService,
         private route: ActivatedRoute,
         private credentialsService: CredentialsService,
-        public router: Router, 
-        public authenticateService: AuthenticateService
-    ) {
-        super(router, authenticateService);
-        super.ngOnInit();
-    }
+        private router: Router, 
+    ) {}
 
     ngOnInit() {
         this.route.params
