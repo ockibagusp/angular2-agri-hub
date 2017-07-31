@@ -17,7 +17,7 @@ export class NodeEditComponent extends IsResearcherComponent {
     links: any[];
     node: Node;
     unlimited: boolean;
-    _initial_subsperday: number;
+    _initial_pubsperday: number;
 
     errors: Array<{ field: string, message: string}>;
 
@@ -49,8 +49,8 @@ export class NodeEditComponent extends IsResearcherComponent {
             this.router.navigateByUrl('/403', { skipLocationChange: true });
         }
         this.node = node;
-        this.unlimited = (-1 == node.subsperday);
-        this._initial_subsperday = node.subsperday;
+        this.unlimited = (-1 == node.pubsperday);
+        this._initial_pubsperday = node.pubsperday;
         this.links = [
             { label: "Home", url: "/" },
             { label: "Nodes", url: "/nodes/" },
@@ -61,10 +61,10 @@ export class NodeEditComponent extends IsResearcherComponent {
 
     unlimitedStateChange(): void {
         if (this.unlimited) {
-            this.node.subsperday = -1;
+            this.node.pubsperday = -1;
         } else {
-            this.node.subsperday = (-1 == this._initial_subsperday) ? 0 : 
-                this._initial_subsperday;
+            this.node.pubsperday = (-1 == this._initial_pubsperday) ? 0 : 
+                this._initial_pubsperday;
         }
     }
 
