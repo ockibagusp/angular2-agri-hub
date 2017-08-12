@@ -7,9 +7,12 @@ import { SensorDataNodeComponent } from './sensordata-node.component';
 import { SensorDataSensorComponent } from './sensordata-sensor.component';
 import { SensorDataService } from './sensordata.service';
 
+import { LocalDatePipe } from '../core/pipes/local-date.pipe';
+
 @NgModule({
     imports: [ CoreModule, Ng2DatetimePickerModule ],
-    declarations: [ 
+    declarations: [
+        LocalDatePipe, 
         SensorDataComponent,
         SensorDataNodeComponent,
         SensorDataSensorComponent
