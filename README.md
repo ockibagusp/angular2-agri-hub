@@ -9,7 +9,7 @@ Agrihub Client; code with Angular2 and ❤
 5. Using Bootstrap Component UI, thanks to [ng-bootsrap](https://ng-bootstrap.github.io/#/home).
 
 # Cons
-1. Storing raw data on browser cookie is very risk, inseccure, and bad-practice; i will fix this problem later...
+1. Storing raw data on browser cookie is very risk, inseccure, and bad-practice...
 
 # Instruction
 1. Install NodeJS
